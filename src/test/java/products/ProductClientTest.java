@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -34,11 +35,12 @@ public class ProductClientTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Value( "${products.api.key}" )
+    private String key;
+
     @Before
     public void setup()
             throws Exception {
-
-
     }
 
     @Test
@@ -49,7 +51,7 @@ public class ProductClientTest {
         String expectedProductJson =
                 objectMapper.writeValueAsString(productList);
 
-        this.server.expect(requestTo("/categories/600001506/products"))
+        this.server.expect(requestTo("/categories/600001506/products?key"+key))
                 .andRespond(withSuccess(expectedProductJson, MediaType.APPLICATION_JSON));
 
 
@@ -61,8 +63,9 @@ public class ProductClientTest {
     }
 
 }
+
 @Data
 @Builder
-class ProductList{
+class ProductList {
     private List<Product> products;
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import products.model.Product;
 
 import java.util.ArrayList;
@@ -18,13 +19,17 @@ public class ProductsListingClient {
 
     @Value( "${products.api.base-url}" )
     private String baseUrl;
+
+    @Value( "${products.api.key}" )
+    private String key;
+
     public ProductsListingClient(RestTemplateBuilder restTemplateBuilder) {
-        restTemplate = restTemplateBuilder.build();
+        restTemplate = restTemplateBuilder.rootUri(baseUrl). build();
     }
     public List<Product> getProducts(String category) {
 
-        Products products = restTemplate.getForObject("/categories/{category}/products",
-                Products.class, category);
+        ProductsList products = restTemplate.getForObject("/categories/{category}/products?key"+key,
+                ProductsList.class, category);
 
         return products.getProducts();
     }
@@ -33,7 +38,7 @@ public class ProductsListingClient {
 }
 @Data
 @NoArgsConstructor
-class Products{
+class ProductsList {
 
     ArrayList<Product> products;
 }

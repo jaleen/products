@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProductsListingClient {
+public class ProductsAPIClient {
 
     private final RestTemplate restTemplate;
 
@@ -23,7 +23,7 @@ public class ProductsListingClient {
     @Value( "${products.api.key}" )
     private String key;
 
-    public ProductsListingClient(RestTemplateBuilder restTemplateBuilder) {
+    public ProductsAPIClient(RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.rootUri(baseUrl). build();
     }
     public List<Product> getProducts(String category) {

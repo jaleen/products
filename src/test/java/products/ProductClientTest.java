@@ -23,11 +23,11 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @RunWith(SpringRunner.class)
-@RestClientTest(ProductsListingClient.class)
+@RestClientTest(ProductsAPIClient.class)
 public class ProductClientTest {
 
     @Autowired
-    private ProductsListingClient client;
+    private ProductsAPIClient client;
 
     @Autowired
     private MockRestServiceServer server;
@@ -38,10 +38,6 @@ public class ProductClientTest {
     @Value( "${products.api.key}" )
     private String key;
 
-    @Before
-    public void setup()
-            throws Exception {
-    }
 
     @Test
     public void givenSomeProductsAreThere_whenGET_thenRetrieveThem() throws Exception {

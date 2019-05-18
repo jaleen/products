@@ -1,6 +1,7 @@
 package products;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,11 @@ public class ProductsListingClient {
         return products.getProducts();
     }
 
-    @Data
-    private class Products{
 
-        ArrayList<Product> products;
-    }
+}
+@Data
+@NoArgsConstructor
+class Products{
+
+    ArrayList<Product> products;
 }

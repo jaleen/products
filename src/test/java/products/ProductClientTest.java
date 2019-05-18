@@ -1,6 +1,8 @@
 package products;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Builder;
+import lombok.Data;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,8 +45,9 @@ public class ProductClientTest {
     public void givenSomeProductsAreThere_whenGET_thenRetrieveThem() throws Exception {
 
         List<Product> expectedProducts = Arrays.asList(Product.builder().productId("3525085").title("hush Tasha Vest Dress").build());
+        ProductList productList = ProductList.builder().products(expectedProducts).build();
         String expectedProductJson =
-                objectMapper.writeValueAsString(expectedProducts);
+                objectMapper.writeValueAsString(productList);
 
         this.server.expect(requestTo("/categories/600001506/products"))
                 .andRespond(withSuccess(expectedProductJson, MediaType.APPLICATION_JSON));
@@ -56,4 +59,10 @@ public class ProductClientTest {
 
 
     }
+
+}
+@Data
+@Builder
+class ProductList{
+    private List<Product> products;
 }

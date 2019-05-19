@@ -14,11 +14,12 @@ import products.model.Product;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.*;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,7 +29,7 @@ public class DiscountedProductsTest {
     private MockMvc mvc;
     @Test
     public void whenProductsExist_thenShouldReturn200() throws Exception {
-        this.mvc.perform(get("/products")).andExpect(status().isOk());
+        this.mvc.perform(get("/categories/600001506/products")).andExpect(status().isOk());
     }
 
     @Test

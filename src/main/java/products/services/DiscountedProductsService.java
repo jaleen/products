@@ -1,10 +1,11 @@
 package products.services;
 
+import org.springframework.stereotype.Service;
 import products.ProductsAPIClient;
 import products.model.Product;
 
 import java.util.List;
-
+@Service
 public class DiscountedProductsService {
     private final ProductsAPIClient productsAPIClient;
 

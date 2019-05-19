@@ -13,7 +13,4 @@ import lombok.NoArgsConstructor;
 public class Product {
     private String productId;
     private String title;
-    private ColorSwatches colorSwatches;
-    private String nowPrice;
-    private String priceLabel;
 }

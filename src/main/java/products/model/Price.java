@@ -1,7 +1,5 @@
 package products.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.*;
 
 @Builder
@@ -13,15 +11,15 @@ public class Price {
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    private String attr1;
+    private String nowPrice;
 
     private String currency;
 
     public void setNow(Object now){
-        attr1 = now.toString();
+        nowPrice = now.toString();
 
     }
     public String getNow(){
-        return attr1;
+        return nowPrice;
     }
 }

@@ -3,6 +3,7 @@ package products.model;
 import lombok.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Data
 @Builder
@@ -15,8 +16,10 @@ public class ColorSwatches {
     @Getter(AccessLevel.NONE)
     private String basicColor;
 
+    @Setter (AccessLevel.NONE)
+    private String rgbcolor;
     public String getRGBColor() {
-        return rgbs.get(basicColor);
+        return Optional.ofNullable(rgbs.get(basicColor)).orElse("");
     }
 
     private static final Map<String, String> rgbs = Map.of(

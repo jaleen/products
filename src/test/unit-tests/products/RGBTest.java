@@ -21,7 +21,7 @@ public class RGBTest {
     public void whenUnknownColor_theReturnNull() {
 
         ColorSwatches redColorSwatch = ColorSwatches.builder().basicColor("Multi").build();
-        assertNull(redColorSwatch.getRGBColor());
+        assertThat(redColorSwatch.getRGBColor(), is(""));
 
     }
 }

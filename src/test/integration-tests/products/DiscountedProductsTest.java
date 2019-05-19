@@ -14,6 +14,7 @@ import products.model.Product;
 
 import java.util.List;
 
+import static java.lang.System.out;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -40,6 +41,7 @@ public class DiscountedProductsTest {
 
         List<Product> actual = mapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<Product>>() {});
 
+        //actual.stream().map(product -> product.getColorSwatches()).distinct().forEach(colorSwatches -> colorSwatches.stream().forEach(colorSwatches1 -> out.println(colorSwatches1.getBasicColor())));
         assertThat(actual.size(), is(greaterThan(0)));
     }
 }

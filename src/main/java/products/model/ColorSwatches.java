@@ -1,9 +1,6 @@
 package products.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Map;
 
@@ -14,13 +11,15 @@ import java.util.Map;
 public class ColorSwatches {
     private String color;
     private String skuId;
+
+    @Getter(AccessLevel.NONE)
     private String basicColor;
 
     public String getRGBColor() {
         return rgbs.get(basicColor);
     }
 
-    private final static Map<String, String> rgbs = Map.of(
+    private static final Map<String, String> rgbs = Map.of(
             "Red", "FF0000",
             "Blue", "0000FF",
             "Pink", "FFC0CB",

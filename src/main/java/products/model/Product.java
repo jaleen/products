@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import products.utils.ProductUtils;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -37,6 +35,9 @@ public class Product {
 
     @JsonIgnore
     public Price getPrice() {
+        if(price==null){
+            price = new Price();
+        }
         return price;
     }
 }

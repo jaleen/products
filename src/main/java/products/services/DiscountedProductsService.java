@@ -21,7 +21,7 @@ public class DiscountedProductsService {
 
         List<Product> products = productsAPIClient.getProducts(category);
 
-        products = products.stream().filter(product -> product.getPrice().getWas() != null)
+        products = products.stream().filter(product -> product.getPrice().isDiscounted())
                 .peek(product -> product.setPriceLabel(
                         PriceLabelFormatterStrategy.getInstance(strategy).format(product.getPrice())))
                 .collect(Collectors.toList());

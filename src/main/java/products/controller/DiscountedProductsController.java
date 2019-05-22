@@ -18,7 +18,7 @@ public class DiscountedProductsController {
     @GetMapping("/categories/{category}/products")
     public List<Product> getDiscountedProducts(@PathVariable("category") String category) {
 
-        return service.getProducts(category);
+        return service.getProducts(category, category);
 
     }
 

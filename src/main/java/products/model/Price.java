@@ -8,18 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Price {
 
-
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    private String nowPrice;
-
+    private String now;
+    private String was;
     private String currency;
-
-    public void setNow(Object now){
-        nowPrice = now.toString();
-
-    }
-    public String getNow(){
-        return nowPrice;
-    }
 }

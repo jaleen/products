@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import products.ProductsAPIClient;
+import products.model.Price;
 import products.model.Product;
 
 import java.util.Arrays;
@@ -32,9 +33,30 @@ public class DiscountedProductsServiceTest {
         DiscountedProductsService service = new DiscountedProductsService(productsAPIClient);
 
 
-        List<Product> productList = service.getProducts(category);
+        List<Product> productList = service.getProducts(category, category);
 
         assertNotNull(productList);
-        assertThat(service.getProducts(category).size(), is(greaterThan(0)));
+        assertThat(service.getProducts(category, category).size(), is(greaterThan(0)));
+    }
+
+    @Test
+    public void givenTwoProducts_whenOneIsDiscounted_thenShouldRetrieveOnlyDiscountedOne(){
+
+        String category = "600001506";
+        Price samePrice = Price.builder().now("3.00").was("").build();
+        Price discountedPrice = Price.builder().now("2.00").was("3.00").build();
+
+
+        List<Product> expectedProducts = Arrays.asList(Product.builder().productId("3525085").title("hush Tasha Vest Dress").price(samePrice).build(),
+                Product.builder().productId("3421340").title("Floral Printed Dress").price(discountedPrice).build());
+
+        when(productsAPIClient.getProducts(category)).thenReturn(expectedProducts);
+        DiscountedProductsService service = new DiscountedProductsService(productsAPIClient);
+
+
+        List<Product> productList = service.getProducts(category, category);
+
+        assertThat(productList.size(), is(1));
+        assertThat(productList.get(0).getNowPrice(),is("£2.00"));
     }
 }

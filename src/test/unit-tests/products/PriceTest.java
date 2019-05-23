@@ -1,7 +1,7 @@
 package products;
 
 import org.junit.Test;
-import products.model.Price;
+import products.model.ProductPrice;
 import products.model.Product;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -12,7 +12,7 @@ public class PriceTest {
     @Test
     public void whenAProductHaveAPrice_thenRetrieveItWithCurrency(){
 
-        Price price = Price.builder().currency("GBP").build();
+        ProductPrice price = ProductPrice.builder().currency("GBP").build();
         price.setNow("10");
         Product product = Product.builder().price(price).build();
 
@@ -22,7 +22,7 @@ public class PriceTest {
     @Test
     public void givenIntegerPrice_whenPriceIsLessThanTen_thenDecimalValue(){
 
-        Price price = Price.builder().currency("GBP").build();
+        ProductPrice price = ProductPrice.builder().currency("GBP").build();
         price.setNow("2");
         Product product = Product.builder().price(price).build();
 
@@ -31,7 +31,7 @@ public class PriceTest {
     @Test
     public void givenIntegerPrice_whenPriceIsMoreThanTen_thenDecimalValueWithOut2Zero(){
 
-        Price price = Price.builder().currency("GBP").build();
+        ProductPrice price = ProductPrice.builder().currency("GBP").build();
         price.setNow("10");
         Product product = Product.builder().price(price).build();
 
@@ -40,7 +40,7 @@ public class PriceTest {
     @Test
     public void givenIntegerPrice_whenPriceIsMoreThanTen_thenDecimalValueWithFractions(){
 
-        Price price = Price.builder().currency("GBP").build();
+        ProductPrice price = ProductPrice.builder().currency("GBP").build();
         price.setNow("12.12");
         Product product = Product.builder().price(price).build();
 

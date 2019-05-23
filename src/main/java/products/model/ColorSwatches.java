@@ -19,7 +19,12 @@ public class ColorSwatches {
     @Setter (AccessLevel.NONE)
     private String rgbcolor;
     public String getRGBColor() {
-        return Optional.ofNullable(rgbs.get(basicColor)).orElse("");
+        if(basicColor!=null) {
+            return Optional.ofNullable(rgbs.get(basicColor)).orElse("");
+        }else {
+            return "";
+        }
+
     }
 
     private static final Map<String, String> rgbs = Map.of(

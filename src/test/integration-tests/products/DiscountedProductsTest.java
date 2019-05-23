@@ -32,16 +32,4 @@ public class DiscountedProductsTest {
     public void whenProductsExist_thenShouldReturn200() throws Exception {
         this.mvc.perform(get("/categories/600001506/products")).andExpect(status().isOk());
     }
-
-    @Test
-    public void whenProductsExist_thenShouldReturnProducts() throws Exception {
-        MvcResult result = this.mvc.perform(get("/categories/600001506/products")).andExpect(status().isOk())
-        .andReturn();
-        ObjectMapper mapper = new ObjectMapper();
-
-        List<Product> actual = mapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<Product>>() {});
-
-        //actual.stream().map(product -> product.getColorSwatches()).distinct().forEach(colorSwatches -> colorSwatches.stream().forEach(colorSwatches1 -> out.println(colorSwatches1.getBasicColor())));
-        assertThat(actual.size(), is(greaterThan(0)));
-    }
 }

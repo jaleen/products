@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import products.model.Price;
+import products.model.ProductPrice;
 import products.model.PriceLabelStrategyName;
 import products.model.Product;
 import products.services.DiscountedProductsService;
@@ -24,8 +24,8 @@ public class PriceLabelTest {
     public void givenDiscountedPrice_whenShowWasNow_thenPriceLabelFormattedForShowWasNow(){
 
         String category = "600001506";
-        Price discountedPrice = Price.builder().currency("£").now("2.00").was("3.00").build();
-        Price notDiscountedPrice = Price.builder().currency("£").now("4.00").build();
+        ProductPrice discountedPrice = ProductPrice.builder().currency("GBP").now("2.00").was("3.00").build();
+        ProductPrice notDiscountedPrice = ProductPrice.builder().currency("GBP").now("4.00").build();
 
         List<Product> expectedProducts = Arrays.asList(Product.builder().productId("3525085").title("hush Tasha Vest Dress").price(discountedPrice).build(),
                 Product.builder().productId("4525086").title("Blue Tasha Vest Dress").price(notDiscountedPrice).build());
@@ -42,8 +42,8 @@ public class PriceLabelTest {
     public void givenDiscountedPrice_whenShowWasThenNow_thenPriceLabelFormattedForShowWasThenNow(){
 
         String category = "600001506";
-        Price discountedPrice = Price.builder().currency("£").was("3.00").then("2.50").now("2.00").build();
-        Price notDiscountedPrice = Price.builder().currency("£").now("4.00").build();
+        ProductPrice discountedPrice = ProductPrice.builder().currency("GBP").was("3.00").then1("2.50").now("2.00").build();
+        ProductPrice notDiscountedPrice = ProductPrice.builder().currency("GBP").now("4.00").build();
 
         List<Product> expectedProducts = Arrays.asList(Product.builder().productId("3525085").title("hush Tasha Vest Dress").price(discountedPrice).build(),
                 Product.builder().productId("4525086").title("Blue Tasha Vest Dress").price(notDiscountedPrice).build());
@@ -54,14 +54,14 @@ public class PriceLabelTest {
         String strategy = PriceLabelStrategyName.ShowWasThenNow.toString();
         Product product = service.getProducts(category, strategy).get(0);
 
-        assertThat(product.getPriceLabel(), is("Was £3.00, then £2.50, now £2.00"));
+        assertThat(product.getPriceLabel(), is("Was £3.00, then1 £2.50, now £2.00"));
     }
     @Test
     public void givenDiscountedPrice_whenShowPercDiscount_thenPriceLabelFormattedForShowPercDiscount(){
 
         String category = "600001506";
-        Price discountedPrice = Price.builder().currency("£").was("3.00").now("2.00").build();
-        Price notDiscountedPrice = Price.builder().currency("£").now("4.00").build();
+        ProductPrice discountedPrice = ProductPrice.builder().currency("GBP").was("3.00").now("2.00").build();
+        ProductPrice notDiscountedPrice = ProductPrice.builder().currency("GBP").now("4.00").build();
 
         List<Product> expectedProducts = Arrays.asList(Product.builder().productId("3525085").title("hush Tasha Vest Dress").price(discountedPrice).build(),
                 Product.builder().productId("4525086").title("Blue Tasha Vest Dress").price(notDiscountedPrice).build());

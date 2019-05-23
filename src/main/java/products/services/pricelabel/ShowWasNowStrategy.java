@@ -1,10 +1,14 @@
 package products.services.pricelabel;
 
-import products.model.Price;
+import products.model.ProductPrice;
+import products.utils.ProductUtils;
 
 public class ShowWasNowStrategy implements PriceLabelFormatterStrategy {
     @Override
-    public String format(Price price) {
-        return new StringBuilder("Was ").append(price.getCurrency()).append(price.getWas()).append(", now ").append(price.getCurrency()).append(price.getNow()).toString();
+    public String format(ProductPrice price) {
+        return new StringBuilder("Was ")
+                .append(ProductUtils.getFormattedPrice(price.getCurrency(),price.getWas()))
+                .append(", now ")
+                .append((ProductUtils.getFormattedPrice(price.getCurrency(), price.getNow()))).toString();
     }
 }

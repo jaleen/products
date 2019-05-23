@@ -1,13 +1,14 @@
 package products.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.apache.commons.lang3.math.NumberUtils;
 import products.utils.ProductUtils;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 
 @Data
 @Builder
@@ -17,26 +18,28 @@ public class Product {
     private String productId;
     private String title;
     private List<ColorSwatches> colorSwatches;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private ProductPrice price;
     private String priceLabel;
-    @Getter(AccessLevel.NONE)
-    private Price price;
+
 
     @Setter(AccessLevel.NONE)
     private String nowPrice;
-    public String getNowPrice(){
-        String currency = Optional.ofNullable(price.getCurrency()).orElse("");
-        return ProductUtils.getFormattedPrice(currency,price.getNow());
+
+    public String getNowPrice() {
+        if (price != null && price.getNow()!=null && NumberUtils.isCreatable(price.getNow())) {
+            String currency = Optional.ofNullable(price.getCurrency()).orElse("");
+            return ProductUtils.getFormattedPrice(currency, price.getNow());
+        } else return "";
     }
 
 
 
-    private static final Map<String,String> currencySymbols =  Map.of("GBP", "£", "USD", "$", "EUR", "€", "","£");
 
-
-    @JsonIgnore
-    public Price getPrice() {
-        if(price==null){
-            price = new Price();
+    public ProductPrice getPrice() {
+        if (price == null) {
+            price = new ProductPrice();
         }
         return price;
     }

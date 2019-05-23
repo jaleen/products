@@ -1,5 +1,6 @@
 package products;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class ProductsAPIClient {
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 class ProductsList {
 
     ArrayList<Product> products;

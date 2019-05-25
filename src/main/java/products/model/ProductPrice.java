@@ -36,4 +36,16 @@ public class ProductPrice {
         return false;
     }
 
+    @JsonIgnore
+    public double getReduction(){
+        if(was==null || was.equals("")){
+            return 0;
+        }else if (NumberUtils.isCreatable(now)){
+            return new BigDecimal(was).subtract(new BigDecimal(now)).doubleValue();
+        }else{
+            return 0;
+        }
+
+    }
+
 }

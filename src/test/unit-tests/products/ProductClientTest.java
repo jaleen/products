@@ -1,8 +1,6 @@
 package products;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Builder;
-import lombok.Data;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import products.model.ColorSwatches;
 import products.model.Product;
+import products.model.ProductList;
 import products.model.ProductPrice;
 
 import java.util.ArrayList;
@@ -64,6 +63,7 @@ public class ProductClientTest {
 
     }
 
+
     @Test
     public void givenAProduct_whenSwatchesExist_thenRetrieveSwatchesAsWell() throws Exception {
 
@@ -87,10 +87,8 @@ public class ProductClientTest {
         assertEquals(expectedProducts.get(0).getColorSwatches(),actualProducts.get(0).getColorSwatches());
     }
 
+
+
+
 }
 
-@Data
-@Builder
-class ProductList {
-    private List<Product> products;
-}

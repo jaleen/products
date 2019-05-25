@@ -1,13 +1,11 @@
 package products.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.apache.commons.lang3.math.NumberUtils;
 import products.utils.ProductUtils;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Data

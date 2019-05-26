@@ -7,4 +7,5 @@ This application needs Java 9 or higher to work on a developer machine. Please i
 # How to run the application
 Try
    - gradlew bootRun and then
-   - to access application use http://localhost:8080/categories/600001506/products
+   - to access application on dev machine use http://localhost:8080/categories/600001506/products
+   - or at Heroku https://products-jalal.herokuapp.com/categories/600001506/products

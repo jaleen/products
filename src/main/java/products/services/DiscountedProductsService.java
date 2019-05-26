@@ -6,13 +6,14 @@ import products.model.Product;
 import products.services.pricelabel.PriceLabelFormatterStrategy;
 import products.utils.ProductPriceComparator;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class DiscountedProductsService {
     private final ProductsAPIClient productsAPIClient;
-    private ProductPriceComparator priceComparator = new ProductPriceComparator();
+    private Comparator<Product> priceComparator = new ProductPriceComparator();
 
     public DiscountedProductsService(ProductsAPIClient productsAPIClient) {
 

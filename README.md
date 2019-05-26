@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jaleen/products.svg?branch=master)](https://travis-ci.org/jaleen/products)
+
 # Discounted Products
 This is a RESTFul API for retrieving the discounted products from a JL products api. Its standard gradle based springboot application.
 # Pre-requisites

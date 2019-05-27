@@ -21,7 +21,11 @@ bootJar {
 repositories {
     mavenCentral()
 }
-
+test {
+    testLogging {
+        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+    }
+}
 sourceCompatibility = 1.9
 targetCompatibility = 1.9
 
